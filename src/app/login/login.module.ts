@@ -13,9 +13,6 @@ import { LoginService } from './login.service';
   declarations: [
     LoginComponent
   ],
-  providers: [
-    LoginService
-  ],
   exports: [
     LoginComponent
   ]
