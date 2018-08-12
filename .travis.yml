@@ -3,7 +3,6 @@ node_js:
   - "10.7.0"
 
 install:
-  - npm install @angular/cli -g
   - npm install
 
 script:
