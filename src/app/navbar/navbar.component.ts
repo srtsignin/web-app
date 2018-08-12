@@ -8,6 +8,14 @@ import { LoginService } from '../login/login.service';
 })
 export class NavbarComponent implements OnInit {
 
+  protected loggedIn: boolean;
+  protected fullName: string;
+  protected roles = [
+    {value: 'admin', viewValue: 'Admin'},
+    {value: 'staff', viewValue: 'Staff'},
+    {value: 'tutor', viewValue: 'Tutor'},
+  ];
+
   constructor(private loginService: LoginService) {
     this.loginService.subscribe({
       next: (loggedIn) => loggedIn ? this.onLogin() : this.onLogout(),
@@ -18,11 +26,13 @@ export class NavbarComponent implements OnInit {
   }
 
   onLogin() {
-
+    this.loggedIn = true;
+    this.fullName = this.loginService.getFullName();
   }
 
   onLogout() {
-
+    this.loggedIn = false;
+    this.fullName = '';
   }
 
 }

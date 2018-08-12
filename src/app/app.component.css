@@ -1,17 +1,17 @@
-app-navbar {
+/* app-navbar {
   position: fixed;
   display: block;
-  height: 60px;
+  height: 67px;
   width: 100%;
-}
+} */
 
-#content {
+/* #content {
   position:fixed;
   display: block;
   top: 60px;
-  height: calc(100% - 60px);
+  height: calc(100% - 67px);
   width: 100%;
-}
+} */
 
 img {
   position: fixed;

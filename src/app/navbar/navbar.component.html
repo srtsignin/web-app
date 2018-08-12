@@ -1,1 +1,12 @@
-<div></div>
+<mat-toolbar color="primary">
+  <p>SRT Sign In</p>
+  <span class="fill-space"></span>
+  <mat-form-field>
+    <mat-select placeholder="Role" color="white">
+      <mat-option *ngFor="let role of roles" [value]="role.value">
+        {{role.viewValue}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <p id="fullName">Connor Boyle</p>
+</mat-toolbar>
