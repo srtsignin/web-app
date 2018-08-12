@@ -1,2 +1,2 @@
 FROM nginx:alpine
-COPY dist/friendviz /usr/share/nginx/html
+COPY dist/web-app /usr/share/nginx/html
