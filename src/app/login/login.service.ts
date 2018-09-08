@@ -1,5 +1,10 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, PartialObserver  } from '../../../node_modules/rxjs';
+import { getMatScrollStrategyAlreadyAttachedError } from '@angular/cdk/overlay/typings/scroll/scroll-strategy';
+import { RosefireAdapterService } from '../rosefire-adapter/rosefire-adapter.service';
+import { UserBuilder } from '../model/user-builder';
+import { User } from '../model/user';
+import { RolesAdapterService } from '../roles-adapter/roles-adapter.service';
 
 @Injectable({
   providedIn: 'root'
@@ -7,15 +12,18 @@ import { BehaviorSubject, PartialObserver  } from '../../../node_modules/rxjs';
 export class LoginService {
 
   private signedIn: BehaviorSubject<Boolean> = new BehaviorSubject(false);
-  private user: RosefireUser;
+  private user: User;
 
-  constructor() { }
+  constructor(private rosefireAdapterService: RosefireAdapterService,
+    private rolesAdapterService: RolesAdapterService) { }
 
   public login() {
-    Rosefire.signIn('ed282a1e-09d5-4511-a5ab-639280ea16fd', (err, user) => {
-      console.log(user);
-      this.user = user;
-      this.signedIn.next(true);
+    this.rosefireAdapterService.signIn().then(([userBuilder, rosefireToken]) => {
+      this.rolesAdapterService.populateRoles(userBuilder, rosefireToken).then((userBuilderWithRoles: UserBuilder) => {
+        this.user = userBuilderWithRoles.build();
+        console.log(this.user);
+        this.signedIn.next(true);
+      });
     });
   }
 
@@ -30,7 +38,7 @@ export class LoginService {
 
   public getFullName(): string {
     if (this.signedIn.getValue()) {
-      return this.user.name;
+      return this.user.fullname;
     } else {
       throw new Error('Attempted to getFullName() when not logged in.');
     }
