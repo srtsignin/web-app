@@ -19,11 +19,11 @@ export class LoginService {
 
   public login() {
     this.rosefireAdapterService.signIn().then(([userBuilder, rosefireToken]) => {
-      this.rolesAdapterService.populateRoles(userBuilder, rosefireToken).then((userBuilderWithRoles: UserBuilder) => {
-        this.user = userBuilderWithRoles.build();
-        console.log(this.user);
-        this.signedIn.next(true);
-      });
+      return this.rolesAdapterService.populateRoles(userBuilder, rosefireToken);
+    }).then((userBuilder: UserBuilder) => {
+      this.user = userBuilder.build();
+      console.log(this.user);
+      this.signedIn.next(true);
     });
   }
 
