@@ -22,7 +22,6 @@ export class LoginService {
       return this.rolesAdapterService.populateRoles(userBuilder, rosefireToken);
     }).then((userBuilder: UserBuilder) => {
       this.user = userBuilder.build();
-      console.log(this.user);
       this.signedIn.next(true);
     });
   }
