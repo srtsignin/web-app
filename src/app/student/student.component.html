@@ -1,3 +1,33 @@
-<p>
-  student works!
-</p>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      <h1>Session Information</h1>
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form>
+      <mat-grid-list cols="5">
+        <mat-grid-tile colspan="1">
+          <h3>Courses:</h3>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="4">
+          <mat-list>
+            <mat-list-item>
+              <mat-form-field>
+                <input matInput>
+              </mat-form-field>
+              <button mat-icon-button class='add-course'>+</button>
+            </mat-list-item>
+          </mat-list>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="1">
+          <h3>Problem Description:</h3>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="4">
+          <textarea ng-model="user.biography" md-maxlength="150" rows="5" md-select-on-focus></textarea>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </form>
+    <button mat-raised-button color="primary">Sign In Percopo Classroom</button>
+  </mat-card-content>
+</mat-card>

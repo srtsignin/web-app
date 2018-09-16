@@ -1,0 +1,27 @@
+mat-card {
+  background-color: white;
+  max-width: 600px;
+  margin: 10px auto;
+}
+
+mat-card-content {
+  align-items: center;
+}
+
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+h3 {
+  text-align: left;
+}
+
+.add-course {
+  background: green;
+}
+
+/* mat-grid-tile {
+  background: lightblue;
+} */

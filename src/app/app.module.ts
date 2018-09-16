@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { NavbarModule } from './navbar/navbar.module';
 import { LoginModule } from './login/login.module';
 import { LoginService } from './login/login.service';
+import { StudentModule } from './student/student.module';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { LoginService } from './login/login.service';
     BrowserAnimationsModule,
     HttpClientModule,
     NavbarModule,
-    LoginModule
+    LoginModule,
+    StudentModule
   ],
   providers: [
     LoginService
