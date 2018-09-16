@@ -20,6 +20,7 @@ export class RolesAdapterService {
   }
 
   private getRoles(rosefireToken: string): Observable<RolesResponse> {
+    console.log(rosefireToken);
     return this.http.get<RolesResponse>('/api/role', {
       headers: new HttpHeaders({'RosefireToken': rosefireToken})
     });
