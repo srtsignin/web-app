@@ -13,15 +13,15 @@ export class ActiveUsersService {
 
   constructor(private http: HttpClient) { }
 
-  getActiveUsers(): Observable<User[]> {
-    return this.http.get<User[]>(this.activeUsersUrl);
+  getActiveUsers(): Observable<any> {
+    return this.http.get(this.activeUsersUrl);
   } 
 
-  addUser (user: User): Observable<User> {
-    return this.http.post<User>(this.activeUsersUrl, user);
+  addUser (user: User): Observable<any> {
+    return this.http.post(this.activeUsersUrl, JSON.stringify(user));
   }
 
-  clearActiveUsers(): Observable<User[]> {
-    return this.http.delete<User[]>(this.activeUsersUrl);
+  clearActiveUsers(): Observable<any> {
+    return this.http.delete(this.activeUsersUrl);
   }
 }

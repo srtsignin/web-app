@@ -22,12 +22,11 @@ export class TutorComponent implements OnInit {
   }
 
   clearActiveUsers() {
-    this.activeUsersService.clearActiveUsers().subscribe(users => this.users = users);
-    console.log("clicked clear");
+    this.activeUsersService.clearActiveUsers().subscribe(users => this.users = users.activeUsers);
   }
 
   refreshActiveUsers() {
-    this.activeUsersService.getActiveUsers().subscribe(users => this.users = users);
+    this.activeUsersService.getActiveUsers().subscribe(users => this.users = users.activeUsers);
     console.log(this.users);
   }
 
