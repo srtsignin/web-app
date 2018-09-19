@@ -25,11 +25,15 @@ export class StudentComponent implements OnInit {
 
   addStudent() {
     let user = new User();
-    user.name = this.loginService.getFullName();
+    // user.name = this.loginService.getFullName();
+    user.name = "Maya Holeman";
     user.courses = this.courses.filter((v) => v != "");
     user.problemDescription = this.description;
     console.log(user);
-    this.activeUsersService.addUser(user);
+    this.activeUsersService.addUser(user).subscribe(
+      next => console.log(next),
+      error => console.log(error)
+    );
   }
 
 }
