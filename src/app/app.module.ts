@@ -15,6 +15,7 @@ import { StudentComponent } from './student/student.component';
 import { TutorComponent } from './tutor/tutor.component';
 
 const appRoutes: Routes = [
+  { path: '',   redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component:  LoginComponent},
   { path: 'student', component:  StudentComponent},
   { path: 'tutor', component: TutorComponent}

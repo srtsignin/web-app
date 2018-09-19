@@ -5,6 +5,7 @@ import { RosefireAdapterService } from '../rosefire-adapter/rosefire-adapter.ser
 import { UserBuilder } from '../model/user-builder';
 import { User } from '../model/user';
 import { RolesAdapterService } from '../roles-adapter/roles-adapter.service';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,8 @@ export class LoginService {
   private user: User;
 
   constructor(private rosefireAdapterService: RosefireAdapterService,
-    private rolesAdapterService: RolesAdapterService) { }
+    private rolesAdapterService: RolesAdapterService,
+    private router: Router) { }
 
   public login() {
     this.rosefireAdapterService.signIn().then(([userBuilder, rosefireToken]) => {
@@ -23,6 +25,7 @@ export class LoginService {
     }).then((userBuilder: UserBuilder) => {
       this.user = userBuilder.build();
       this.signedIn.next(true);
+      this.router.navigate(['/student']);
     });
   }
 
@@ -40,6 +43,14 @@ export class LoginService {
       return this.user.fullname;
     } else {
       throw new Error('Attempted to getFullName() when not logged in.');
+    }
+  }
+
+  public isTutor() : boolean  {
+    if (this.signedIn.getValue()) {
+      return this.user.roles.includes("Tutor");
+    } else {
+      throw new Error('Attempted check isTutor() when not logged in.');
     }
   }
 }
