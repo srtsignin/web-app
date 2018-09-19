@@ -19,7 +19,8 @@ h3 {
 }
 
 .add-course {
-  background: green;
+  background: #33cc33;
+  margin: 0 0 0 2em;
 }
 
 /* mat-grid-tile {

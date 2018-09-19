@@ -8,6 +8,7 @@ import { NavbarModule } from './navbar/navbar.module';
 import { LoginModule } from './login/login.module';
 import { LoginService } from './login/login.service';
 import { StudentModule } from './student/student.module';
+import { TutorModule } from './tutor/tutor.module';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { StudentModule } from './student/student.module';
     HttpClientModule,
     NavbarModule,
     LoginModule,
-    StudentModule
+    StudentModule,
+    TutorModule
   ],
   providers: [
     LoginService

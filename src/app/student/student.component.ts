@@ -7,9 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StudentComponent implements OnInit {
 
+  courses : string[];
+
   constructor() { }
 
   ngOnInit() {
+    this.courses = ["", ""]
+  }
+
+  addCourseRow() {
+    this.courses.push("");
   }
 
 }
