@@ -23,7 +23,6 @@ export class TutorComponent implements OnInit {
 
   refreshActiveUsers() {
     this.activeUsersService.getActiveUsers().subscribe(users => this.users = users.activeUsers);
-    console.log(this.users);
   }
 
 }

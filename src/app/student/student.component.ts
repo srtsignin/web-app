@@ -33,7 +33,6 @@ export class StudentComponent implements OnInit {
     user.name = this.loginService.getFullName();
     user.courses = this.courses.filter((v) => v != "");
     user.problemDescription = this.description;
-    console.log(user);
     if (user.courses.length > 0) {
       this.activeUsersService.addUser(user).subscribe(
         next => {
@@ -44,7 +43,6 @@ export class StudentComponent implements OnInit {
       );
     } else {
       this.courseMessage = "Must have at least one course filled out.";
-      console.log("not valid");
     }
   }
 

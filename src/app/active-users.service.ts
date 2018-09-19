@@ -18,7 +18,6 @@ export class ActiveUsersService {
   } 
 
   addUser (user: User): Observable<any> {
-    console.log(JSON.stringify(user));
     return this.http.post(this.activeUsersUrl, JSON.stringify(user));
   }
 
