@@ -14,11 +14,7 @@ export class TutorComponent implements OnInit {
   constructor(private activeUsersService: ActiveUsersService) { }
 
   ngOnInit() {
-    let user = new User();
-    user.name = "Maya Holeman";
-    user.courses = ["CSSE477", "CSSE479"];
-    user.problemDescription = "i need help";
-    this.users = [user, user];
+    this.refreshActiveUsers();
   }
 
   clearActiveUsers() {

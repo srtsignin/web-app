@@ -1,16 +1,15 @@
 mat-card {
   background-color: white;
-  max-width: 400px;
+  max-width: 600px;
   margin: 10px auto;
 }
 
 mat-card-content {
-  margin: 0 5% 0 5%;
-  align-items: center;
+  margin: 0 2em 0 2em;
 }
 
-h3 {
-  text-align: left;
+.course-error {
+  color: red;
 }
 
 .add-course {
@@ -23,12 +22,11 @@ h3 {
   margin: 0 0 0 2em;
 }
 
-mat-list {
-  width: 100%;
-  margin: 0 0 2em 5em;
+textarea {
+  margin: 0 0 2em 0;
+  max-width: 400px;
 }
 
-textarea {
-  margin: 0 0 2em 7em;
-  width: 30%;
+.signIn {
+  margin: 0 0 0 7em;
 }
