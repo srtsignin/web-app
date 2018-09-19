@@ -6,20 +6,19 @@
   </mat-card-header>
   <mat-card-content>
     <form>
-      <h3>Courses:</h3>
-      <mat-list
-        *ngFor="let course of courses">
-        <mat-list-item>
+      <h2>Courses:</h2>
+      <mat-list>
+        <mat-list-item *ngFor="let course of courses;let index = index;let last = last;" [ngClass]="{last: last}">
           <mat-form-field>
-            <input matInput>
+            <input matInput [(ngModel)]="courses[index]" [ngModelOptions]="{standalone: true, updateOn: 'blur'}"/>
           </mat-form-field>
+          <button mat-icon-button (click)="addCourseRow()" class='add-course'><b>+</b></button>
         </mat-list-item>
       </mat-list>
-      <button mat-icon-button (click)="addCourseRow()" class='add-course'><b>+</b></button>
+      <h2>Problem Description:</h2>
+      <textarea [(ngModel)]="description" md-maxlength="200" rows="5" md-select-on-focus [ngModelOptions]="{standalone: true}"></textarea>
       <br>
-      <h3>Problem Description:</h3>
-      <textarea ng-model="user.biography" md-maxlength="150" rows="5" md-select-on-focus></textarea>
+      <button mat-raised-button (click)="addStudent()" color="primary">Sign In Percopo Classroom</button>
     </form>
-    <button mat-raised-button color="primary">Sign In Percopo Classroom</button>
   </mat-card-content>
 </mat-card>
