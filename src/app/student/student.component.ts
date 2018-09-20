@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { LoginService } from '../login/login.service';
-import { ActiveUsersService } from '../active-users.service';
+import { ActiveUsersService } from '../active-users/active-users.service';
 import { User } from '../user';
 
 @Component({
@@ -12,26 +12,26 @@ import { User } from '../user';
 })
 export class StudentComponent implements OnInit {
 
-  protected courses : string[];
-  protected description : string;
-  protected courseMessage : string;
+  protected courses: string[];
+  protected description: string;
+  protected courseMessage: string;
 
   constructor(private loginService: LoginService,
     private activeUsersService: ActiveUsersService,
     private router: Router) { }
 
   ngOnInit() {
-    this.courses = [""]
+    this.courses = [''];
   }
 
   addCourseRow() {
-    this.courses.push("");
+    this.courses.push('');
   }
 
   addStudent() {
-    let user = new User();
+    const user = new User();
     user.name = this.loginService.getFullName();
-    user.courses = this.courses.filter((v) => v != "");
+    user.courses = this.courses.filter((v) => v !== '');
     user.problemDescription = this.description;
     if (user.courses.length > 0) {
       this.activeUsersService.addUser(user).subscribe(
@@ -42,7 +42,7 @@ export class StudentComponent implements OnInit {
         error => console.log(error)
       );
     } else {
-      this.courseMessage = "Must have at least one course filled out.";
+      this.courseMessage = 'Must have at least one course filled out.';
     }
   }
 

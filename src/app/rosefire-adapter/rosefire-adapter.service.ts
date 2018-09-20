@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
 import { UserBuilder } from '../model/user-builder';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class RosefireAdapterService {
 
   constructor() { }

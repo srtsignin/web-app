@@ -4,9 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { RolesResponse } from '../model/roles-response';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class RolesAdapterService {
 
   constructor(private http: HttpClient) { }
@@ -20,7 +18,7 @@ export class RolesAdapterService {
   }
 
   private getRoles(rosefireToken: string): Observable<RolesResponse> {
-    return this.http.get<RolesResponse>('/api/role', {
+    return this.http.get<RolesResponse>('https://srtsign.in/api/role', {
       headers: new HttpHeaders({'RosefireToken': rosefireToken})
     });
   }

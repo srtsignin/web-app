@@ -13,6 +13,9 @@ import { TutorModule } from './tutor/tutor.module';
 import { LoginComponent } from './login/login.component';
 import { StudentComponent } from './student/student.component';
 import { TutorComponent } from './tutor/tutor.component';
+import { RosefireAdapterService } from './rosefire-adapter/rosefire-adapter.service';
+import { RolesAdapterService } from './roles-adapter/roles-adapter.service';
+import { ActiveUsersService } from './active-users/active-users.service';
 
 const appRoutes: Routes = [
   { path: '',   redirectTo: '/login', pathMatch: 'full' },
@@ -36,10 +39,13 @@ const appRoutes: Routes = [
     NavbarModule,
     LoginModule,
     StudentModule,
-    TutorModule
+    TutorModule,
   ],
   providers: [
-    LoginService
+    LoginService,
+    RosefireAdapterService,
+    RolesAdapterService,
+    ActiveUsersService
   ],
   bootstrap: [AppComponent]
 })
