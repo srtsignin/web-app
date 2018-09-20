@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActiveUsersService } from '../active-users/active-users.service';
-import { User } from '../user';
+import {StudentSignInRequest} from '../model/student-sign-in-request';
 
 @Component({
   selector: 'app-tutor',
@@ -9,7 +9,7 @@ import { User } from '../user';
 })
 export class TutorComponent implements OnInit {
 
-  users: User[];
+  users: StudentSignInRequest[];
 
   constructor(private activeUsersService: ActiveUsersService) { }
 

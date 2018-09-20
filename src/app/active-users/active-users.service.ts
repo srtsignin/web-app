@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
-import { User } from '../user';
+import { StudentSignInRequest } from '../model/student-sign-in-request';
 
 @Injectable()
 export class ActiveUsersService {
@@ -15,8 +14,8 @@ export class ActiveUsersService {
     return this.http.get(this.activeUsersUrl);
   }
 
-  addUser (user: User): Observable<any> {
-    return this.http.post(this.activeUsersUrl, JSON.stringify(user));
+  addUser (studentSignInRequest: StudentSignInRequest): Observable<any> {
+    return this.http.post(this.activeUsersUrl, JSON.stringify(studentSignInRequest));
   }
 
   clearActiveUsers(): Observable<any> {
