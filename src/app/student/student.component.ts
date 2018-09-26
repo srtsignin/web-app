@@ -33,10 +33,8 @@ export class StudentComponent implements OnInit {
     this.studentCoursesChecked = [];
     this.courses = [''];
     this.searchMode = true;
-
-    const user = new User();
-    user.token = "token";
-    this.coursesService.getClasses(user).subscribe(
+    
+    this.coursesService.getClasses(this.loginService.getUser()).subscribe(
       next => {
         this.studentCourses = next.data;
         this.studentCoursesChecked = new Array(next.data.length);
