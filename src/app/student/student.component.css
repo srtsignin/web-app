@@ -8,6 +8,11 @@ mat-card-content {
   margin: 0 2em 0 2em;
 }
 
+.course-input {
+  max-width: 250px;
+  width: 100%;
+}
+
 .course-error {
   color: red;
 }
@@ -29,4 +34,8 @@ textarea {
 
 .signIn {
   margin: 0 0 0 7em;
+}
+
+.modeOff {
+  display: none;
 }

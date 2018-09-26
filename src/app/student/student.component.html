@@ -8,12 +8,31 @@
     <form>
       <h2>Courses<b class="course-error">*</b></h2>
       <p class="course-error">{{courseMessage}}</p>
-      <mat-list>
+      <mat-list [class.modeOff]="!searchMode">
         <mat-list-item *ngFor="let course of courses;let index = index;let last = last;" [ngClass]="{last: last}">
-          <mat-form-field>
-            <input matInput [(ngModel)]="courses[index]" [ngModelOptions]="{standalone: true, updateOn: 'blur'}"/>
+          <mat-form-field class="course-input">
+            <input matInput 
+              [(ngModel)]="courses[index]" 
+              [ngModelOptions]="{standalone: true, updateOn: 'blur'}" 
+              [matAutocomplete]="auto" 
+              (input)="searchCourses($event.target.value)"
+              (click)="searchCourses()"
+              />
           </mat-form-field>
+          <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+            <mat-option *ngFor="let option of options" [value]="option">
+              {{option}}
+            </mat-option>
+          </mat-autocomplete>
           <button mat-icon-button (click)="addCourseRow()" class='add-course'><b>+</b></button>
+        </mat-list-item>
+      </mat-list>
+
+      <mat-list [class.modeOff]="searchMode">
+        <mat-list-item *ngFor="let studentcourse of studentCourses;let i = index;">
+          <mat-checkbox [(ngModel)]="studentCoursesChecked[i]" [ngModelOptions]="{standalone: true}">
+            {{studentcourse}}
+          </mat-checkbox>
         </mat-list-item>
       </mat-list>
       <h2>Problem Description</h2>
@@ -21,5 +40,6 @@
       <br>
       <button mat-raised-button (click)="addStudent()" color="primary" class="signIn">Sign In Percopo Classroom</button>
     </form>
+    <button mat-button (click)="switchSelectionMode()" class="signIn">Switch Selection Mode</button>
   </mat-card-content>
 </mat-card>

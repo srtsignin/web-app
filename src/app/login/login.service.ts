@@ -53,4 +53,12 @@ export class LoginService {
       throw new Error('Attempted check isTutor() when not logged in.');
     }
   }
+
+  public getUser() : User {
+    if (this.signedIn.getValue()) {
+      return this.user;
+    } else {
+      throw new Error('Attempted to getFullName() when not logged in.');
+    }
+  }
 }

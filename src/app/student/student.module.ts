@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { StudentComponent } from './student.component';
-import { MatButtonModule, MatCardModule, MatListModule, MatInputModule, MatGridListModule } from '@angular/material';
+import { MatButtonModule, MatCardModule, MatListModule, MatInputModule, MatGridListModule, MatAutocompleteModule, MatCheckboxModule } from '@angular/material';
 
 @NgModule({
   imports: [
@@ -13,7 +13,9 @@ import { MatButtonModule, MatCardModule, MatListModule, MatInputModule, MatGridL
     MatListModule,
     MatInputModule,
     MatButtonModule,
-    MatGridListModule
+    MatGridListModule,
+    MatAutocompleteModule,
+    MatCheckboxModule
   ],
   declarations: [
     StudentComponent

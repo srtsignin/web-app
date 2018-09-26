@@ -16,6 +16,7 @@ import { TutorComponent } from './tutor/tutor.component';
 import { RosefireAdapterService } from './rosefire-adapter/rosefire-adapter.service';
 import { RolesAdapterService } from './roles-adapter/roles-adapter.service';
 import { ActiveUsersService } from './active-users/active-users.service';
+import { CoursesService } from './courses/courses.service';
 
 const appRoutes: Routes = [
   { path: '',   redirectTo: '/login', pathMatch: 'full' },
@@ -45,7 +46,8 @@ const appRoutes: Routes = [
     LoginService,
     RosefireAdapterService,
     RolesAdapterService,
-    ActiveUsersService
+    ActiveUsersService,
+    CoursesService
   ],
   bootstrap: [AppComponent]
 })
