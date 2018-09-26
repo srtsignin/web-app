@@ -58,7 +58,7 @@ export class LoginService {
     if (this.signedIn.getValue()) {
       return this.user;
     } else {
-      throw new Error('Attempted to getFullName() when not logged in.');
+      throw new Error('Attempted to getUser() when not logged in.');
     }
   }
 }
