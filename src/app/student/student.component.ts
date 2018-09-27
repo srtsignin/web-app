@@ -17,7 +17,6 @@ export class StudentComponent implements OnInit {
   protected studentCourses: string[];
   protected studentCoursesChecked: boolean[];
   protected courses: string[];
-  protected searchMode: boolean;
   
   protected description: string;
   protected courseMessage: string;
@@ -32,7 +31,6 @@ export class StudentComponent implements OnInit {
     this.studentCourses = [];
     this.studentCoursesChecked = [];
     this.courses = [''];
-    this.searchMode = true;
     
     this.coursesService.getClasses(this.loginService.getUser()).subscribe(
       next => {
@@ -57,14 +55,11 @@ export class StudentComponent implements OnInit {
     const studentSignInRequest = new StudentSignInRequest();
     studentSignInRequest.name = this.loginService.getFullName();
     studentSignInRequest.problemDescription = this.description;
-    if (this.searchMode) {
-      studentSignInRequest.courses = this.courses.filter((v) => v !== '');
-    } else {
-      studentSignInRequest.courses = [];
-      for (var i = 0; i < this.studentCoursesChecked.length; ++i) {
-        if (this.studentCoursesChecked[i]) {
-          studentSignInRequest.courses.push(this.studentCourses[i]);
-        }
+    studentSignInRequest.courses = this.courses.filter((v) => v !== '');
+    
+    for (var i = 0; i < this.studentCoursesChecked.length; ++i) {
+      if (this.studentCoursesChecked[i]) {
+        studentSignInRequest.courses.push(this.studentCourses[i]);
       }
     }
 
@@ -87,9 +82,5 @@ export class StudentComponent implements OnInit {
       },
       error => console.log(error)
     );
-  }
-
-  switchSelectionMode() {
-    this.searchMode = !this.searchMode;
   }
 }

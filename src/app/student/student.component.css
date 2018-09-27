@@ -36,6 +36,6 @@ textarea {
   margin: 0 0 0 7em;
 }
 
-.modeOff {
-  display: none;
+.classSelection {
+  max-width: 150px;
 }
