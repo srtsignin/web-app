@@ -28,8 +28,8 @@
               />
           </mat-form-field>
           <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-            <mat-option *ngFor="let option of options" [value]="option.description + option.number">
-              {{option.display}}
+            <mat-option *ngFor="let option of options" [value]="option.department + option.number">
+              {{option.department}}{{option.number}} ({{option.name}})
             </mat-option>
           </mat-autocomplete>
           <button mat-icon-button (click)="addCourseRow()" class='add-course'><b>+</b></button>

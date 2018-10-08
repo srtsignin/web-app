@@ -78,10 +78,7 @@ export class StudentComponent implements OnInit {
   searchCourses(search: string) {
     this.coursesService.getCourses(search).subscribe(
       next => {
-        this.options = new Array(next.data.length);
-        for (var i = 0; i < this.options.length; ++i) {
-          this.options[i] = new Course(next.data.deptartment, next.data.number, next.data.name);
-        }
+        this.options = next.data;
       },
       error => console.log(error)
     );
