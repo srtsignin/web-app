@@ -10,19 +10,13 @@
     </mat-grid-tile>
   </mat-grid-list>
   <br>
-  <!-- <mat-accordion multi="true" displayMode="flat"> -->
-      <mat-expansion-panel
-        *ngFor="let user of users">
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            {{ user.name }}
-          </mat-panel-title>
-          <mat-panel-description
-            *ngFor="let course of user.courses">
-              <p>{{course}}</p>
-            </mat-panel-description>
-        </mat-expansion-panel-header>
-        {{ user.problemDescription }}
-      </mat-expansion-panel>
-    <!-- </mat-accordion> -->
+  <mat-expansion-panel *ngFor="let user of users">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        {{ user.name }}
+      </mat-panel-title>
+      <mat-panel-description [innerHtml]="user.courses.join(', ')"></mat-panel-description>
+    </mat-expansion-panel-header>
+    {{ user.problemDescription }}
+  </mat-expansion-panel>
 </mat-card>

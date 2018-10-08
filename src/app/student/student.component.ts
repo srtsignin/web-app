@@ -5,7 +5,7 @@ import { LoginService } from '../login/login.service';
 import { ActiveUsersService } from '../active-users/active-users.service';
 import { CoursesService } from '../courses/courses.service';
 import { StudentSignInRequest } from '../model/student-sign-in-request';
-import { User } from '../model/user';
+import { Course } from '../model/course';
 
 @Component({
   selector: 'app-student',
@@ -20,7 +20,7 @@ export class StudentComponent implements OnInit {
   
   protected description: string;
   protected courseMessage: string;
-  protected options: string[] = [];
+  protected options: Course[] = [];
 
   constructor(private loginService: LoginService,
     private activeUsersService: ActiveUsersService,
@@ -78,7 +78,10 @@ export class StudentComponent implements OnInit {
   searchCourses(search: string) {
     this.coursesService.getCourses(search).subscribe(
       next => {
-        this.options = next.data;
+        this.options = new Array(next.data.length);
+        for (var i = 0; i < this.options.length; ++i) {
+          this.options[i] = new Course(next.data.deptartment, next.data.number, next.data.name);
+        }
       },
       error => console.log(error)
     );
