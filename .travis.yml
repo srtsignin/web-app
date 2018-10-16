@@ -1,15 +1,13 @@
 language: node_js
 node_js:
-  - "10.7.0"
-
+- 10.7.0
 install:
-  - npm install
-
+- npm install
 script:
-  - npm run build
-  - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-  - docker build -t cjblink1/srtsignin-web-app:$TRAVIS_BRANCH-$TRAVIS_COMMIT .
-  - docker push cjblink1/srtsignin-web-app:$TRAVIS_BRANCH-$TRAVIS_COMMIT
-  
+- npm run build
+- docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+- docker build -t cjblink1/srtsignin-web-app:$TRAVIS_BRANCH-$TRAVIS_COMMIT .
+- docker push cjblink1/srtsignin-web-app:$TRAVIS_BRANCH-$TRAVIS_COMMIT
 notifications:
-    slack: srt-sign-in:seBUaTtcg95LrCc2rDFa8zLJ
+  slack:
+    secure: SzmcaraUKA7KFj/84+QA1/hpQwVZChXHLk+qRca93y/ZKSyrr2jRPUhmxQcU9xQhisTGiqVPnOLhRJHOFNsGsUmzoBum5Oa8ZBELwLVCtlPRl4pwSse3gUy7bSjgB6pc+gvzeezCwf32marQMmM7EBPoUPeVILYnTl3q/ifL7ABXJ6HfUV8zEgj4OhN9hpMxWOKbo0R/g4R1YOI8RJEQYHJSiURE97FnwGbTCJUuRahXafOZrlEfIswW8CH0ADAqWmGfKIPDOnoyvwbsK75n8JN5LIgvE+d6B+MaWul0NKmQXbDFBOQcaQVKdXWMwCSlULVgfkosCRK8vzLkK9jSQY/+f+PFn17erNGFoRAT/gyf7Oow6GPiTolZHViyc6zIm4MT3NBcwSWw/CeOrIc0xueNz/GcU85vpgAe/yPebraLCwulOmBxl4G+8oUwK9wSJaIazwKumnIqzk7HbvV+mLDfH8c0v3WX9C2dANkL0FudOBvBn+FTosxpoMYx5tIhJmXxavN4Bgf9Z66QJiAVHMFWPn/hr4Xq2q6zCPOl+07Ru/FePzPlTJTCtVlCVcWe3fMvSf7oP39d5nNA69dmoLHyqrzNFG4gRuIYLqTpjbbO+UF3S7XKWnKPg5bA//DF7EqSjSN2HFi4LW6JQF2YpXnfQAiGb/Md+Bqmkb0HzO8=
