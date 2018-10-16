@@ -5,7 +5,10 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
-import { NavbarModule } from './navbar/navbar.module';
+
+// import { NavbarModule } from './navbar/navbar.module';
+import { NavbarModule } from '@srtsignin/navbar';
+
 import { LoginModule } from './login/login.module';
 import { LoginService } from './login/login.service';
 import { StudentModule } from './student/student.module';
