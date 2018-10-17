@@ -6,18 +6,14 @@ import { RouterModule, Routes } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 
-import { NavbarModule } from './navbar/navbar.module';
-import { LoginModule } from './login/login.module';
-import { LoginService } from './login/login.service';
-import { StudentModule } from './student/student.module';
-import { TutorModule } from './tutor/tutor.module';
-import { LoginComponent } from './login/login.component';
-import { StudentComponent } from './student/student.component';
-import { TutorComponent } from './tutor/tutor.component';
-import { RosefireAdapterService } from './rosefire-adapter/rosefire-adapter.service';
-import { RolesAdapterService } from './roles-adapter/roles-adapter.service';
-import { ActiveUsersService } from './active-users/active-users.service';
-import { CoursesService } from './courses/courses.service';
+import { NavbarModule } from '@srtsignin/navbar';
+import { LoginModule, LoginComponent, LoginService } from '@srtsignin/login';
+import { StudentModule, StudentComponent } from '@srtsignin/student';
+import { TutorModule, TutorComponent } from '@srtsignin/tutor';
+import { RosefireAdapterService } from '@srtsignin/rosefire-adapter';
+import { RolesAdapterService } from '@srtsignin/roles-adapter';
+import { ActiveUsersService } from '@srtsignin/active-users';
+import { CoursesService } from '@srtsignin/courses';
 
 const appRoutes: Routes = [
   { path: '',   redirectTo: '/login', pathMatch: 'full' },
