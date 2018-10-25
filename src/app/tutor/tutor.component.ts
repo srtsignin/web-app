@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActiveUsersService } from '../active-users/active-users.service';
-import {StudentSignInRequest} from '../model/student-sign-in-request';
+import { User } from '../model/user';
+import { Student } from '../model/student';
+import { LoginService } from '../login/login.service';
 
 @Component({
   selector: 'app-tutor',
@@ -9,20 +11,23 @@ import {StudentSignInRequest} from '../model/student-sign-in-request';
 })
 export class TutorComponent implements OnInit {
 
-  users: StudentSignInRequest[];
+  tutor: User;
+  students: Student[];
 
-  constructor(private activeUsersService: ActiveUsersService) { }
+  constructor(private activeUsersService: ActiveUsersService,
+    private loginService: LoginService) { }
 
   ngOnInit() {
+    this.tutor = this.loginService.getUser();
     this.refreshActiveUsers();
   }
 
-  clearActiveUsers() {
-    this.activeUsersService.clearActiveUsers().subscribe(users => this.users = users.activeUsers);
+  refreshActiveUsers() {
+    this.activeUsersService.getActiveUsers(this.tutor).subscribe(students => this.students = students.data);
   }
 
-  refreshActiveUsers() {
-    this.activeUsersService.getActiveUsers().subscribe(users => this.users = users.activeUsers);
+  checkoffUser(student: User) {
+    this.activeUsersService.deleteUser(this.tutor, student);
   }
 
 }

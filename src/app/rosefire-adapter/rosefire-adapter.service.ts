@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { UserBuilder } from '../model/user-builder';
+import 'rosefire';
+declare var Rosefire;
 
 @Injectable()
 export class RosefireAdapterService {
@@ -12,7 +14,7 @@ export class RosefireAdapterService {
         if (err) {
           reject(err);
         }
-        resolve([new UserBuilder().token(user.token).fullname(user.name), user.token]);
+        resolve([new UserBuilder().token(user.token).fullname(user.name).username(user.username), user.token]);
       });
     });
   }

@@ -6,7 +6,7 @@ import {
   MatCardModule,
   MatGridListModule,
   MatExpansionModule
-} from "@angular/material";
+} from '@angular/material';
 
 @NgModule({
   imports: [

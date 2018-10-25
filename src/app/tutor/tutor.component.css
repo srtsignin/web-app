@@ -19,5 +19,4 @@ mat-panel-title {
 mat-panel-description {
   flex: 0 0 auto;
   margin: 1em;
-  /* flex-direction: column; */
 }

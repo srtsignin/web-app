@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NavbarComponent } from './navbar.component';
-import { MatSelect, MatSelectModule, MatToolbarModule } from '../../../node_modules/@angular/material';
+import { MatSelectModule, MatToolbarModule } from '@angular/material';
 
 @NgModule({
   imports: [

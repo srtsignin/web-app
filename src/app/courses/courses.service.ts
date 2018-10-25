@@ -1,25 +1,28 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { User } from '../model/user';
-import { CoursesTestModel } from '../model/coursesTestModel';
+import { API_URL } from '../api/api.module';
 
 @Injectable()
 export class CoursesService {
 
-  activeURL = 'https://srtsign.in/api/active';
-  
-  constructor(private http: HttpClient) { }
+  private API_URL;
+  private activeUrl = '/active';
 
-  getCourses(search : string): Observable<any> {
-    const options = search ?
-      { params: new HttpParams().set('search', search) } : 
-      { params: new HttpParams().set('search', '')};
-    return this.http.get(this.activeURL + "/courses", options);
+  constructor(private http: HttpClient, @Inject(API_URL) url: string) {
+    this.API_URL = url;
   }
 
-  getClasses(user : User): Observable<any> {
-    return this.http.get(this.activeURL + "/classes", { 
+  getCourses(search: string): Observable<any> {
+    const options = search ?
+      { params: new HttpParams().set('search', search) } :
+      { params: new HttpParams().set('search', '')};
+    return this.http.get(this.API_URL + this.activeUrl + '/course', options);
+  }
+
+  getClasses(user: User): Observable<any> {
+    return this.http.get(this.API_URL + this.activeUrl + '/classes', {
       headers: new HttpHeaders({'StudentToken': user.token}) });
   }
 }

@@ -6,6 +6,7 @@ import { ActiveUsersService } from '../active-users/active-users.service';
 import { CoursesService } from '../courses/courses.service';
 import { StudentSignInRequest } from '../model/student-sign-in-request';
 import { Course } from '../model/course';
+import { User } from '../model/User';
 
 @Component({
   selector: 'app-student',
@@ -14,13 +15,15 @@ import { Course } from '../model/course';
 })
 export class StudentComponent implements OnInit {
 
-  protected studentCourses: string[];
-  protected studentCoursesChecked: boolean[];
-  protected courses: string[];
-  
-  protected description: string;
-  protected courseMessage: string;
-  protected options: Course[] = [];
+  student: User;
+
+  studentCourses: Course[];
+  studentCoursesChecked: boolean[];
+  courses: Course[];
+
+  description: string;
+  courseMessage: string;
+  options: Course[] = [];
 
   constructor(private loginService: LoginService,
     private activeUsersService: ActiveUsersService,
@@ -30,41 +33,42 @@ export class StudentComponent implements OnInit {
   ngOnInit() {
     this.studentCourses = [];
     this.studentCoursesChecked = [];
-    this.courses = [''];
-    
-    this.coursesService.getClasses(this.loginService.getUser()).subscribe(
+    this.courses = [new Course('', '', '')];
+
+    this.student = this.loginService.getUser();
+
+    this.coursesService.getClasses(this.student).subscribe(
       next => {
         this.studentCourses = next.data;
         this.studentCoursesChecked = new Array(next.data.length);
-        for (var i = 0; i < this.studentCoursesChecked.length; ++i) {
-          this.studentCoursesChecked[i] = false; 
+        for (let i = 0; i < this.studentCoursesChecked.length; ++i) {
+          this.studentCoursesChecked[i] = false;
         }
       },
       error => {
-        console.log(error)
+        console.log(error);
         this.studentCourses = [];
       }
     );
   }
 
   addCourseRow() {
-    this.courses.push('');
+    this.courses.push(new Course('', '', ''));
   }
 
   addStudent() {
     const studentSignInRequest = new StudentSignInRequest();
-    studentSignInRequest.name = this.loginService.getFullName();
     studentSignInRequest.problemDescription = this.description;
-    studentSignInRequest.courses = this.courses.filter((v) => v !== '');
-    
-    for (var i = 0; i < this.studentCoursesChecked.length; ++i) {
+    studentSignInRequest.courses = this.courses.filter((v) => v.number !== '');
+
+    for (let i = 0; i < this.studentCoursesChecked.length; ++i) {
       if (this.studentCoursesChecked[i]) {
         studentSignInRequest.courses.push(this.studentCourses[i]);
       }
     }
 
     if (studentSignInRequest.courses.length > 0) {
-      this.activeUsersService.addUser(studentSignInRequest).subscribe(
+      this.activeUsersService.addUser(this.student, studentSignInRequest).subscribe(
         next => {
           this.router.navigate(['/login']);
         },
@@ -75,10 +79,12 @@ export class StudentComponent implements OnInit {
     }
   }
 
-  searchCourses(search: string) {
+  searchCourses(search?: string) {
+    this.options = [];
     this.coursesService.getCourses(search).subscribe(
       next => {
-        this.options = next.data;
+        const data = next.data;
+        this.options.push(new Course(data.name, data.departent, data.number));
       },
       error => console.log(error)
     );

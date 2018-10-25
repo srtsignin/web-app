@@ -1,5 +1,6 @@
+import { Course } from './course';
+
 export class StudentSignInRequest {
-  name: string;
-  courses: string[];
+  courses: Course[];
   problemDescription: string;
 }

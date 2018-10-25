@@ -18,6 +18,8 @@ import { RosefireAdapterService } from './rosefire-adapter/rosefire-adapter.serv
 import { RolesAdapterService } from './roles-adapter/roles-adapter.service';
 import { ActiveUsersService } from './active-users/active-users.service';
 import { CoursesService } from './courses/courses.service';
+import { ApiModule } from './api/api.module';
+import { environment } from '../environments/environment';
 
 const appRoutes: Routes = [
   { path: '',   redirectTo: '/login', pathMatch: 'full' },
@@ -42,6 +44,7 @@ const appRoutes: Routes = [
     LoginModule,
     StudentModule,
     TutorModule,
+    ApiModule.forRoot(environment.settings.backend)
   ],
   providers: [
     LoginService,
