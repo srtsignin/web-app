@@ -6,7 +6,7 @@ import { ActiveUsersService } from '../active-users/active-users.service';
 import { CoursesService } from '../courses/courses.service';
 import { StudentSignInRequest } from '../model/student-sign-in-request';
 import { Course } from '../model/course';
-import { User } from '../model/User';
+import { User } from '../model/user';
 
 @Component({
   selector: 'app-student',
