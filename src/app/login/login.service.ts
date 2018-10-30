@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { BehaviorSubject, PartialObserver  } from 'rxjs';
+
 import { RosefireAdapterService } from '../rosefire-adapter/rosefire-adapter.service';
+import { RolesAdapterService } from '../roles-adapter/roles-adapter.service';
 import { UserBuilder } from '../model/user-builder';
 import { User } from '../model/user';
-import { RolesAdapterService } from '../roles-adapter/roles-adapter.service';
-import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -19,9 +20,11 @@ export class LoginService {
     private router: Router) { }
 
   public login() {
-    this.rosefireAdapterService.signIn().then(([userBuilder, rosefireToken]) => {
-      return this.rolesAdapterService.populateRoles(userBuilder, rosefireToken);
+    this.rosefireAdapterService.signIn().then(([userBuilder, authToken]) => {
+      console.log('requesting population of roles from roles adapter');
+      return this.rolesAdapterService.populateRoles(userBuilder, authToken);
     }).then((userBuilder: UserBuilder) => {
+      console.log('creating user builder');
       this.user = userBuilder.build();
       this.signedIn.next(true);
       if (this.user.roles.includes('Tutor')) {

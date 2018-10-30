@@ -14,11 +14,12 @@ export class CoursesService {
     this.API_URL = url;
   }
 
-  getCourses(search: string): Observable<any> {
-    const options = search ?
-      { params: new HttpParams().set('search', search) } :
-      { params: new HttpParams().set('search', '')};
-    return this.http.get(this.API_URL + this.activeUrl + '/course', options);
+  getCourses(user: User, search: string): Observable<any> {
+    return this.http.get(this.API_URL + this.activeUrl + '/courses', {
+      params: (search ? new HttpParams().set('search', search) :
+        new HttpParams().set('search', '')),
+      headers: new HttpHeaders({'AuthToken': user.token})
+    });
   }
 
   getClasses(user: User): Observable<any> {
