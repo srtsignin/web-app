@@ -36,7 +36,10 @@
       <h2>Problem Description</h2>
       <textarea [(ngModel)]="description" cols="50" rows="5" md-select-on-focus [ngModelOptions]="{standalone: true}"></textarea>
       <br>
-      <button mat-raised-button (click)="addStudent()" color="primary" class="signIn">Sign In Percopo Classroom</button>
+      <div class='button-row'>
+        <span class="fill-space"></span>
+        <button mat-raised-button (click)="addStudent()" color="primary" class="signIn">Sign In Percopo Classroom</button>
+      </div>
     </form>
   </mat-card-content>
 </mat-card>

@@ -1,13 +1,9 @@
 <mat-card>
-  <mat-grid-list cols="5" rowHeight="5em">
-    <mat-grid-tile colspan="1">
-      <h1>Active Users</h1>
-    </mat-grid-tile>  
-    <mat-grid-tile colspan="3"></mat-grid-tile>
-    <mat-grid-tile colspan="1">
-      <button mat-flat-button (click)="refreshActiveUsers()">Refresh</button>
-    </mat-grid-tile>
-  </mat-grid-list>
+  <div class="flex-row">
+    <h1>Active Users</h1>
+    <span class="fill-space"></span>
+    <button mat-flat-button (click)="refreshActiveUsers()">Refresh</button>
+  </div>
   <p class="deletion-error">{{ deletionError }}</p>
   <br>
   <mat-expansion-panel *ngFor="let student of students">
@@ -17,7 +13,10 @@
       </mat-panel-title>
       <mat-panel-description [innerHtml]="student.getCourseIDs()"></mat-panel-description>
     </mat-expansion-panel-header>
-    {{ student.problemDescription }}
-    <button mat-flat-button  class="checkoff" (click)="checkoffUser(student)">Check Off</button>
+    <div class="flex-row">
+      <p>{{ student.problemDescription }}</p>
+      <span class="fill-space"></span>
+      <button mat-flat-button  class="checkoff" (click)="checkoffUser(student)">Check Off</button>
+    </div>
   </mat-expansion-panel>
 </mat-card>

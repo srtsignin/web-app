@@ -6,6 +6,7 @@ mat-card {
 
 mat-card-content {
   margin: 0 2em 0 2em;
+  max-width: 400px;
 }
 
 .course-input {
@@ -30,12 +31,22 @@ mat-card-content {
 textarea {
   margin: 0 0 2em 0;
   max-width: 400px;
+  width: 100%;
 }
 
 .signIn {
-  margin: 0 0 0 12.5em;
+  margin-right: 0;
 }
 
 .classSelection {
   max-width: 150px;
+}
+
+.button-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.fill-space {
+  flex: 1 1 auto;
 }

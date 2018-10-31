@@ -8,11 +8,6 @@ button {
   margin: 1em;
 }
 
-.checkoff {
-  /* position: absolute; */
-  right: 0;
-}
-
 mat-expansion-panel {
   margin: 1em auto;
 }
@@ -22,10 +17,18 @@ mat-panel-title {
 }
 
 mat-panel-description {
-  flex: 0 0 auto;
   margin: 1em;
 }
 
 .deletion-error {
   color: red;
+}
+
+.flex-row {
+  display: flex !important;
+  flex-direction: row;
+}
+
+.fill-space {
+  flex: 1 1 auto;
 }
