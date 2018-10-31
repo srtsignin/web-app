@@ -1,12 +1,23 @@
 <mat-toolbar color="primary">
   <p>SRT Sign In</p>
   <span class="fill-space"></span>
-  <mat-form-field *ngIf="loggedIn && roles.length > 1">
+  <!-- <mat-form-field *ngIf="loggedIn && roles.length > 1">
     <mat-select placeholder="Role" (selectionChange)="changeRole($event)">
       <mat-option *ngFor="let role of roles" [value]="role">
         {{role}}
       </mat-option>
     </mat-select>
-  </mat-form-field>
+  </mat-form-field> -->
   <p *ngIf="loggedIn" id="fullName">{{fullName}}</p>
+  <div *ngIf="loggedIn && roles.length > 1">
+    <button mat-button [matMenuTriggerFor]="menu">
+      <!-- <mat-icon>more_vert</mat-icon> -->
+      Menu
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item *ngFor="let role of roles" (click)="changeRole(role)">
+        <span>{{ role }}</span>
+      </button>
+    </mat-menu>
+  </div>
 </mat-toolbar>

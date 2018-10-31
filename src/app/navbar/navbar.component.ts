@@ -35,9 +35,12 @@ export class NavbarComponent implements OnInit {
     this.router.navigate(['/login']);
   }
 
-  changeRole(event: any) {
-    const selection = event.source.value;
-    this.router.navigate(['/' + selection.toLowerCase()]);
+  changeRole(role: string) {
+    if (role === 'Staff') {
+      this.router.navigate(['/tutor']);
+    } else {
+      this.router.navigate(['/' + role.toLowerCase()]);
+    }
   }
 
 }
