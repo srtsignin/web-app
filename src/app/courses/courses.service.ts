@@ -24,6 +24,6 @@ export class CoursesService {
 
   getClasses(user: User): Observable<any> {
     return this.http.get(this.API_URL + this.activeUrl + '/classes', {
-      headers: new HttpHeaders({'StudentToken': user.token}) });
+      headers: new HttpHeaders({'AuthToken': user.token}) });
   }
 }

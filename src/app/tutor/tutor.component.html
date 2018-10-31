@@ -12,9 +12,9 @@
   <mat-expansion-panel *ngFor="let student of students">
     <mat-expansion-panel-header>
       <mat-panel-title>
-        {{ student.name }}
+        {{ student.checkInTime }} - {{ student.name }}
       </mat-panel-title>
-      <mat-panel-description [innerHtml]="student.courses"></mat-panel-description>
+      <mat-panel-description [innerHtml]="student.getCourseIDs()"></mat-panel-description>
     </mat-expansion-panel-header>
     {{ student.problemDescription }}
     <!-- (click)="checkoffUser(student)" -->

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { MatOptionSelectionChange } from '@angular/material';
 import { LoginService } from '../login/login.service';
 
 @Component({
@@ -12,7 +14,7 @@ export class NavbarComponent implements OnInit {
   fullName: string;
   roles = [];
 
-  constructor(private loginService: LoginService) {
+  constructor(private loginService: LoginService, private router: Router) {
     this.loginService.subscribe({
       next: (loggedIn) => loggedIn ? this.onLogin() : this.onLogout(),
     });
@@ -30,6 +32,12 @@ export class NavbarComponent implements OnInit {
   onLogout() {
     this.loggedIn = false;
     this.fullName = '';
+    this.router.navigate(['/login']);
+  }
+
+  changeRole(event: any) {
+    const selection = event.source.value;
+    this.router.navigate(['/' + selection.toLowerCase()]);
   }
 
 }

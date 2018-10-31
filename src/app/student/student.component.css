@@ -9,7 +9,7 @@ mat-card-content {
 }
 
 .course-input {
-  max-width: 250px;
+  max-width: 350px;
   width: 100%;
 }
 
@@ -33,7 +33,7 @@ textarea {
 }
 
 .signIn {
-  margin: 0 0 0 7em;
+  margin: 0 0 0 12.5em;
 }
 
 .classSelection {

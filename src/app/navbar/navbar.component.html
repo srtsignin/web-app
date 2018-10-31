@@ -2,7 +2,7 @@
   <p>SRT Sign In</p>
   <span class="fill-space"></span>
   <mat-form-field *ngIf="loggedIn">
-    <mat-select placeholder="Role">
+    <mat-select placeholder="Role" (selectionChange)="changeRole($event)">
       <mat-option *ngFor="let role of roles" [value]="role">
         {{role}}
       </mat-option>

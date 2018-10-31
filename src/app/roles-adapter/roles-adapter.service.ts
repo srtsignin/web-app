@@ -16,17 +16,14 @@ export class RolesAdapterService {
   }
 
   public populateRoles(userBuilder: UserBuilder, token: string): Promise<UserBuilder> {
-    console.log('populating roles');
     return new Promise((resolve, reject) => {
       this.getRoles(token).subscribe((rolesResponse: any) => {
-        console.log(rolesResponse.roles);
         resolve(userBuilder.roles(rolesResponse.roles));
       }, reject);
     });
   }
 
   private getRoles(token: string): Observable<any> {
-    console.log('getting roles form role service');
     return this.http.get(this.API_URL + this.rolesUrl, {
       headers: new HttpHeaders({'AuthToken': token})
     });

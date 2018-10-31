@@ -21,10 +21,8 @@ export class LoginService {
 
   public login() {
     this.rosefireAdapterService.signIn().then(([userBuilder, authToken]) => {
-      console.log('requesting population of roles from roles adapter');
       return this.rolesAdapterService.populateRoles(userBuilder, authToken);
     }).then((userBuilder: UserBuilder) => {
-      console.log('creating user builder');
       this.user = userBuilder.build();
       this.signedIn.next(true);
       if (this.user.roles.includes('Tutor')) {

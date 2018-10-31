@@ -8,6 +8,11 @@ button {
   margin: 1em;
 }
 
+.checkoff {
+  /* position: absolute; */
+  right: 0;
+}
+
 mat-expansion-panel {
   margin: 1em auto;
 }

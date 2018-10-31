@@ -37,6 +37,7 @@ export class StudentComponent implements OnInit {
 
     this.student = this.loginService.getUser();
 
+    // TODO: put back once StudentToken is changed to AuthToken
     // this.coursesService.getClasses(this.student).subscribe(
     //   next => {
     //     this.studentCourses = next.data;
@@ -59,8 +60,13 @@ export class StudentComponent implements OnInit {
   addStudent() {
     const studentSignInRequest = new StudentSignInRequest();
     studentSignInRequest.problemDescription = this.description;
-    studentSignInRequest.courses = this.courses.filter((v) => v.number !== '');
-
+    let num = 0;
+    for (let i = 0; i < this.courses.length; i++) {
+      this.courses[i].updateDetails();
+      num++;
+    }
+    studentSignInRequest.courses = this.courses.filter((c) => c.number !== '');
+    // TODO: put back once StudentToken is changed to AuthToken
     // for (let i = 0; i < this.studentCoursesChecked.length; ++i) {
     //   if (this.studentCoursesChecked[i]) {
     //     studentSignInRequest.courses.push(this.studentCourses[i]);
@@ -75,16 +81,20 @@ export class StudentComponent implements OnInit {
         error => console.log(error)
       );
     } else {
-      this.courseMessage = 'Must have at least one course filled out.';
+      // this.courseMessage = 'Must have at least one course filled out.';
     }
   }
 
   searchCourses(search?: string) {
     this.options = [];
     this.coursesService.getCourses(this.student, search).subscribe(
-      next => {
-        const data = next.data;
-        data.foreach(d => this.options.push(new Course(d.name, d.departent, d.number, d.queryString)));
+      courses => {
+        for (let j = 0; j < courses.data.length; j++) {
+          this.options.push(new Course(courses.data[j].name,
+                                        courses.data[j].department,
+                                        courses.data[j].number,
+                                        courses.data[j].queryString));
+        }
       },
       error => console.log(error)
     );
