@@ -72,7 +72,7 @@ export class TutorComponent implements OnInit {
     dialogRef.afterClosed().subscribe(data => {
       if (data) {
         this.activeUsersService.deleteUser(this.tutor, student).subscribe(response => {
-          if (response.success && response.data === student.username) {
+          if (response.success) {
             this.refreshActiveUsers();
           } else {
             this.deletionError = 'There was an error deleting ' + student.name;
