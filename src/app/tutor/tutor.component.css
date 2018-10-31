@@ -25,3 +25,7 @@ mat-panel-description {
   flex: 0 0 auto;
   margin: 1em;
 }
+
+.deletion-error {
+  color: red;
+}

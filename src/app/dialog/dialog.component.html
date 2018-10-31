@@ -1,0 +1,6 @@
+<h1 mat-dialog-title>{{ title }}</h1>
+<div mat-dialog-content><p>{{ content }}</p></div>
+<div mat-dialog-actions layout="row">
+  <button mat-flat-button class="decline" color="accent" (click)="close(false)">{{ decline }}</button>
+  <button mat-flat-button (click)="close(true)">{{ accept }}</button>
+</div>

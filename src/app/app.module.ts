@@ -19,7 +19,9 @@ import { RolesAdapterService } from './roles-adapter/roles-adapter.service';
 import { ActiveUsersService } from './active-users/active-users.service';
 import { CoursesService } from './courses/courses.service';
 import { ApiModule } from './api/api.module';
+import { DialogModule } from './dialog/dialog.module';
 import { environment } from '../environments/environment';
+import { DialogComponent } from './dialog/dialog.component';
 
 const appRoutes: Routes = [
   { path: '',   redirectTo: '/login', pathMatch: 'full' },

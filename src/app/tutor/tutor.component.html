@@ -8,6 +8,7 @@
       <button mat-flat-button (click)="refreshActiveUsers()">Refresh</button>
     </mat-grid-tile>
   </mat-grid-list>
+  <p class="deletion-error">{{ deletionError }}</p>
   <br>
   <mat-expansion-panel *ngFor="let student of students">
     <mat-expansion-panel-header>
@@ -17,7 +18,6 @@
       <mat-panel-description [innerHtml]="student.getCourseIDs()"></mat-panel-description>
     </mat-expansion-panel-header>
     {{ student.problemDescription }}
-    <!-- (click)="checkoffUser(student)" -->
-    <button mat-flat-button  class="checkoff">Check Off</button>
+    <button mat-flat-button  class="checkoff" (click)="checkoffUser(student)">Check Off</button>
   </mat-expansion-panel>
 </mat-card>

@@ -8,7 +8,7 @@ export class Student {
   username: string;
 
   constructor(time: string, c: Course[], n: string, pd: string, u: string) {
-    this.checkInTime = new Date(time).toLocaleDateString();
+    this.checkInTime = new Date(time).toLocaleTimeString();
     this.courses = c;
     this.name = n;
     this.problemDescription = pd;

@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { StudentSignInRequest } from '../model/student-sign-in-request';
 import { User } from '../model/user';
+import { Student } from '../model/student';
 import { API_URL } from '../api/api.module';
 
 @Injectable()
@@ -32,7 +33,7 @@ export class ActiveUsersService {
     );
   }
 
-  deleteUser(tutor: User, student: User): Observable<any> {
+  deleteUser(tutor: User, student: Student): Observable<any> {
     return this.http.delete(this.API_URL + this.activeUsersUrl, {
       params: new HttpParams().set('roomId', 'percopo').set('username', student.username),
       headers: new HttpHeaders().set('AuthToken', tutor.token)

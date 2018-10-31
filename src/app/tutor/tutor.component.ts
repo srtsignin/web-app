@@ -4,6 +4,8 @@ import { User } from '../model/user';
 import { Student } from '../model/student';
 import { Course } from '../model/course';
 import { LoginService } from '../login/login.service';
+import { MatDialog, MatDialogConfig } from '@angular/material';
+import { DialogComponent } from '../dialog/dialog.component';
 
 @Component({
   selector: 'app-tutor',
@@ -14,10 +16,12 @@ export class TutorComponent implements OnInit {
 
   tutor: User;
   students: Student[];
-  debug: string;
+  deletionError: string;
 
   constructor(private activeUsersService: ActiveUsersService,
-    private loginService: LoginService) { }
+    private loginService: LoginService,
+    private dialog: MatDialog) {
+    }
 
   ngOnInit() {
     this.tutor = this.loginService.getUser();
@@ -26,6 +30,7 @@ export class TutorComponent implements OnInit {
   }
 
   refreshActiveUsers() {
+    this.deletionError = '';
     this.students.length = 0;
     this.activeUsersService.getActiveUsers(this.tutor).subscribe(students => {
       for (let i = 0; i < students.data.length; i++) {
@@ -46,8 +51,35 @@ export class TutorComponent implements OnInit {
     });
   }
 
-  checkoffUser(student: User) {
-    this.activeUsersService.deleteUser(this.tutor, student);
+  checkoffUser(student: Student) {
+    this.deletionError = '';
+    this.openDialog(student);
+  }
+
+  openDialog(student: Student) {
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.width = '350px';
+
+    dialogConfig.data = {
+      title: 'Do you want to check off ' + student.name + '?',
+      description: student.name.concat(' will be checked off and removed from active users.'),
+      decline: 'Cancel',
+      accept: 'Check Off'
+    };
+
+    const dialogRef = this.dialog.open(DialogComponent, dialogConfig);
+    dialogRef.afterClosed().subscribe(data => {
+      if (data) {
+        this.activeUsersService.deleteUser(this.tutor, student).subscribe(response => {
+          if (response.success && response.data === student.username) {
+            this.refreshActiveUsers();
+          } else {
+            this.deletionError = 'There was an error deleting ' + student.name;
+          }
+        });
+      }
+    });
   }
 
 }

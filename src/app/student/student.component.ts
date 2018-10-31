@@ -76,7 +76,12 @@ export class StudentComponent implements OnInit {
     if (studentSignInRequest.courses.length > 0) {
       this.activeUsersService.addUser(this.student, studentSignInRequest).subscribe(
         next => {
-          this.router.navigate(['/login']);
+          if (this.student.roles.length > 1) {
+            this.router.navigate(['/tutor']);
+          } else {
+            this.loginService.logout();
+            this.router.navigate(['/login']);
+          }
         },
         error => console.log(error)
       );
