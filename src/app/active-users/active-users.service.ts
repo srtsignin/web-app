@@ -23,11 +23,13 @@ export class ActiveUsersService {
   }
 
   addUser (student: User, studentSignInRequest: StudentSignInRequest): Observable<any> {
-    return this.http.post(this.API_URL + this.activeUsersUrl, {
-      params: new HttpParams().set('roomId', 'percopo'),
-      headers: new HttpHeaders().set('AuthToken', student.token),
-      body: JSON.stringify(studentSignInRequest)
-    });
+    return this.http.post(this.API_URL + this.activeUsersUrl,
+      JSON.stringify(studentSignInRequest),
+      {
+        params: new HttpParams().set('roomId', 'percopo'),
+        headers: new HttpHeaders().set('AuthToken', student.token).set('Content-Type', 'application/json')
+      }
+    );
   }
 
   deleteUser(tutor: User, student: User): Observable<any> {
