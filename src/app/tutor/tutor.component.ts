@@ -16,6 +16,7 @@ export class TutorComponent implements OnInit {
 
   tutor: User;
   students: Student[];
+  finishedOptions: Map<Student, boolean>;
   deletionError: string;
 
   constructor(private activeUsersService: ActiveUsersService,
@@ -26,6 +27,7 @@ export class TutorComponent implements OnInit {
   ngOnInit() {
     this.tutor = this.loginService.getUser();
     this.students = [];
+    this.finishedOptions = new Map<Student, boolean>();
     this.refreshActiveUsers();
   }
 
@@ -42,42 +44,32 @@ export class TutorComponent implements OnInit {
                                     s.courses[j].number,
                                     s.courses[j].queryString));
         }
-        this.students.push(new Student(s.checkInTime,
-                                        courses,
-                                        s.name,
-                                        s.problemDescription,
-                                        s.username));
+        const student = new Student(s.checkInTime,
+                                      courses,
+                                      s.name,
+                                      s.problemDescription,
+                                      s.username);
+        this.students.push(student);
+        this.finishedOptions.set(student, false);
       }
     });
   }
 
-  checkoffUser(student: Student) {
-    this.deletionError = '';
-    this.openDialog(student);
+  finishOptions(student) {
+    return this.finishedOptions.get(student);
   }
 
-  openDialog(student: Student) {
-    const dialogConfig = new MatDialogConfig();
+  finishSession(student) {
+    this.finishedOptions.set(student, true);
+  }
 
-    dialogConfig.width = '350px';
-
-    dialogConfig.data = {
-      title: 'Do you want to check off ' + student.name + '?',
-      description: student.name.concat(' will be checked off and removed from active users.'),
-      decline: 'Cancel',
-      accept: 'Check Off'
-    };
-
-    const dialogRef = this.dialog.open(DialogComponent, dialogConfig);
-    dialogRef.afterClosed().subscribe(data => {
-      if (data) {
-        this.activeUsersService.deleteUser(this.tutor, student).subscribe(response => {
-          if (response.success) {
-            this.refreshActiveUsers();
-          } else {
-            this.deletionError = 'There was an error deleting ' + student.name;
-          }
-        });
+  checkoffUser(student: Student) {
+    this.deletionError = '';
+    this.activeUsersService.deleteUser(this.tutor, student).subscribe(response => {
+      if (response.success) {
+        this.refreshActiveUsers();
+      } else {
+        this.deletionError = 'There was an error deleting ' + student.name;
       }
     });
   }

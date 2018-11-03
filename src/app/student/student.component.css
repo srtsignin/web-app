@@ -41,12 +41,3 @@ textarea {
 .classSelection {
   max-width: 150px;
 }
-
-.button-row {
-  display: flex;
-  flex-direction: row;
-}
-
-.fill-space {
-  flex: 1 1 auto;
-}

@@ -4,3 +4,12 @@ body {
   background-color: #e0e0e0;
   font-family: Roboto, Arial, sans-serif;
 }
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.fill-space {
+  flex: 1 1 auto;
+}

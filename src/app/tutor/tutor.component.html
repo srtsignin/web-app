@@ -16,7 +16,10 @@
     <div class="flex-row">
       <p>{{ student.problemDescription }}</p>
       <span class="fill-space"></span>
-      <button mat-flat-button  class="checkoff" (click)="checkoffUser(student)">Check Off</button>
+      <button mat-flat-button class="checkoff" *ngIf="!finishOptions(student)" (click)="finishSession(student)">Finish Session</button>
+      <button mat-flat-button class="checkoff" *ngIf="finishOptions(student)">Edit Session</button>
+      <button mat-flat-button class="checkoff" *ngIf="finishOptions(student)" (click)="checkoffUser(student)">Submit</button>
+    
     </div>
   </mat-expansion-panel>
 </mat-card>
