@@ -1,0 +1,15 @@
+<mat-expansion-panel>
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      {{ student.checkInTime }} - {{ student.name }}
+    </mat-panel-title>
+    <mat-panel-description [innerHtml]="student.getCourseIDs()"></mat-panel-description>
+  </mat-expansion-panel-header>
+  <div class="flex-row">
+    <p>{{ student.problemDescription }}</p>
+    <span class="fill-space"></span>
+    <button mat-flat-button class="checkoff" *ngIf="!finishedSession" (click)="finishSession()">Finish Session</button>
+    <button mat-flat-button class="checkoff" *ngIf="finishedSession">Edit Session</button>
+    <button mat-flat-button class="checkoff" *ngIf="finishedSession" (click)="finishSession()">Submit</button>
+  </div>
+</mat-expansion-panel>

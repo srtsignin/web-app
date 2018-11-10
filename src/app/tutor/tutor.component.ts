@@ -4,8 +4,6 @@ import { User } from '../model/user';
 import { Student } from '../model/student';
 import { Course } from '../model/course';
 import { LoginService } from '../login/login.service';
-import { MatDialog, MatDialogConfig } from '@angular/material';
-import { DialogComponent } from '../dialog/dialog.component';
 
 @Component({
   selector: 'app-tutor',
@@ -16,18 +14,14 @@ export class TutorComponent implements OnInit {
 
   tutor: User;
   students: Student[];
-  finishedOptions: Map<Student, boolean>;
   deletionError: string;
 
   constructor(private activeUsersService: ActiveUsersService,
-    private loginService: LoginService,
-    private dialog: MatDialog) {
-    }
+    private loginService: LoginService) { }
 
   ngOnInit() {
     this.tutor = this.loginService.getUser();
     this.students = [];
-    this.finishedOptions = new Map<Student, boolean>();
     this.refreshActiveUsers();
   }
 
@@ -50,17 +44,8 @@ export class TutorComponent implements OnInit {
                                       s.problemDescription,
                                       s.username);
         this.students.push(student);
-        this.finishedOptions.set(student, false);
       }
     });
-  }
-
-  finishOptions(student) {
-    return this.finishedOptions.get(student);
-  }
-
-  finishSession(student) {
-    this.finishedOptions.set(student, true);
   }
 
   checkoffUser(student: Student) {

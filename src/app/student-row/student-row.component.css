@@ -1,0 +1,16 @@
+mat-expansion-panel {
+  margin: 1em auto;
+}
+
+mat-extension-panel-header {
+  justify-content: space-between;
+}
+
+mat-panel-title {
+  padding: 1em 0 0 0;
+}
+
+mat-panel-description {
+  margin: 1em;
+  flex: 0 0 auto;
+}

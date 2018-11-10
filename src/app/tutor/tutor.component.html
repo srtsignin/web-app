@@ -6,20 +6,5 @@
   </div>
   <p class="deletion-error">{{ deletionError }}</p>
   <br>
-  <mat-expansion-panel *ngFor="let student of students">
-    <mat-expansion-panel-header>
-      <mat-panel-title>
-        {{ student.checkInTime }} - {{ student.name }}
-      </mat-panel-title>
-      <mat-panel-description [innerHtml]="student.getCourseIDs()"></mat-panel-description>
-    </mat-expansion-panel-header>
-    <div class="flex-row">
-      <p>{{ student.problemDescription }}</p>
-      <span class="fill-space"></span>
-      <button mat-flat-button class="checkoff" *ngIf="!finishOptions(student)" (click)="finishSession(student)">Finish Session</button>
-      <button mat-flat-button class="checkoff" *ngIf="finishOptions(student)">Edit Session</button>
-      <button mat-flat-button class="checkoff" *ngIf="finishOptions(student)" (click)="checkoffUser(student)">Submit</button>
-    
-    </div>
-  </mat-expansion-panel>
+  <app-student-row *ngFor="let student of students" [student]="student" (checkOffEvent)="checkoffUser($event)"></app-student-row>
 </mat-card>

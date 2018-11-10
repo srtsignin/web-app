@@ -2,25 +2,23 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   MatButtonModule,
-  MatCardModule,
+  MatExpansionModule,
   MatGridListModule
 } from '@angular/material';
-import { TutorComponent } from './tutor.component';
-import { StudentRowModule } from '../student-row/student-row.module';
+import { StudentRowComponent } from './student-row.component';
 
 @NgModule({
   imports: [
     CommonModule,
     MatButtonModule,
-    MatCardModule,
-    MatGridListModule,
-    StudentRowModule
+    MatExpansionModule,
+    MatGridListModule
   ],
   declarations: [
-    TutorComponent
+    StudentRowComponent
   ],
   exports: [
-    TutorComponent
+    StudentRowComponent
   ]
 })
-export class TutorModule { }
+export class StudentRowModule { }
