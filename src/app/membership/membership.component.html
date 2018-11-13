@@ -1,0 +1,6 @@
+<div class="flex-row">
+  <h1>Members</h1>
+  <span class="fill-space"></span>
+  <!--TODO: Add search box-->
+</div>
+<app-membership-row accept="Save" decline="Delete" confirm="Confirm Delete" (confirmEvent)="updateMember($event)" (declineEvent)="deleteMember($event)"></app-membership-row>

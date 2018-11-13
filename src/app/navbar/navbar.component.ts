@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { MatOptionSelectionChange } from '@angular/material';
 import { LoginService } from '../login/login.service';
 
 @Component({
@@ -36,11 +35,7 @@ export class NavbarComponent implements OnInit {
   }
 
   changeRole(role: string) {
-    if (role === 'Staff') {
-      this.router.navigate(['/tutor']);
-    } else {
-      this.router.navigate(['/' + role.toLowerCase()]);
-    }
+    this.router.navigate(['/' + role.toLowerCase()]);
   }
 
 }

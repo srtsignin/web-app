@@ -2,8 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   MatButtonModule,
-  MatExpansionModule,
-  MatGridListModule
+  MatExpansionModule
 } from '@angular/material';
 import { StudentRowComponent } from './student-row.component';
 
@@ -11,8 +10,7 @@ import { StudentRowComponent } from './student-row.component';
   imports: [
     CommonModule,
     MatButtonModule,
-    MatExpansionModule,
-    MatGridListModule
+    MatExpansionModule
   ],
   declarations: [
     StudentRowComponent

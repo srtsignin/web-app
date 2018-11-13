@@ -21,11 +21,25 @@ import { CoursesService } from './courses/courses.service';
 import { ApiModule } from './api/api.module';
 import { environment } from '../environments/environment';
 import { StudentRowModule } from './student-row/student-row.module';
+import { MembershipModule } from './membership/membership.module';
+import { MembershipRowModule } from './membership-row/membership-row.module';
+import { AdminComponent } from './admin/admin.component';
+import { AdminModule } from './admin/admin.module';
+import { PendingRequestsModule } from './pending-requests/pending-requests.module';
+import { StaffModule } from './staff/staff.module';
+import { StaffComponent } from './staff/staff.component';
+import { RegistrationModule } from './registration/registration.module';
+import { RegistrationComponent } from './registration/registration.component';
+
+
 const appRoutes: Routes = [
   { path: '',   redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component:  LoginComponent},
   { path: 'student', component:  StudentComponent},
-  { path: 'tutor', component: TutorComponent}
+  { path: 'tutor', component: TutorComponent},
+  { path: 'staff', component: StaffComponent},
+  { path: 'admin', component: AdminComponent},
+  { path: 'registration', component: RegistrationComponent}
 ];
 
 @NgModule({
@@ -45,6 +59,12 @@ const appRoutes: Routes = [
     StudentModule,
     TutorModule,
     StudentRowModule,
+    MembershipModule,
+    MembershipRowModule,
+    AdminModule,
+    PendingRequestsModule,
+    StaffModule,
+    RegistrationModule,
     ApiModule.forRoot(environment.settings.backend)
   ],
   providers: [

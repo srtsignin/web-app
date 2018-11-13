@@ -1,0 +1,18 @@
+<mat-expansion-panel>
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      {{ user.fullname }}
+    </mat-panel-title>
+    <mat-panel-description [innerHtml]="user.getRoles()"></mat-panel-description>
+  </mat-expansion-panel-header>
+  <mat-list>
+    <mat-list-item *ngFor="let role of possibleRoles; let i = index;">
+      <mat-checkbox [(ngModel)]="checkedRoles[i]" [ngModelOptions]="{standalone: true}">
+        {{ role }}
+      </mat-checkbox>
+    </mat-list-item>
+  </mat-list>
+  <button mat-flat-button (click)="confirmRow()">{{accept}}</button>
+  <button mat-flat-button *ngIf="!confirmDelete" (click)='declineRow()'>{{decline}}</button>
+  <button mat-flat-button *ngIf= "confirmDelete" (click)='declineRow()'>{{confirm}}</button>
+</mat-expansion-panel>

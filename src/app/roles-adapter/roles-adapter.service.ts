@@ -9,7 +9,6 @@ import { API_URL } from '../api/api.module';
 export class RolesAdapterService {
 
   private API_URL;
-  private rolesUrl = '/role/roles';
 
   constructor(private http: HttpClient, @Inject(API_URL) url: string) {
     this.API_URL = url;
@@ -24,9 +23,14 @@ export class RolesAdapterService {
   }
 
   private getRoles(token: string): Observable<any> {
-    return this.http.get(this.API_URL + this.rolesUrl, {
+    return this.http.get(this.API_URL + '/role/roles', {
       headers: new HttpHeaders({'AuthToken': token})
     });
   }
 
+  public getAllRoles(token: string): Observable<any> {
+    return this.http.get(this.API_URL + '/role/all_roles', {
+      headers: new HttpHeaders({'AuthToken': token})
+    });
+  }
 }

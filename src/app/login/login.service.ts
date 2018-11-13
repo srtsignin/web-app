@@ -25,7 +25,11 @@ export class LoginService {
     }).then((userBuilder: UserBuilder) => {
       this.user = userBuilder.build();
       this.signedIn.next(true);
-      if (this.user.roles.includes('Tutor')) {
+      if (this.user.roles.includes('Admin')) {
+        this.router.navigate(['/admin']);
+      } else if (this.user.roles.includes('Staff')) {
+        this.router.navigate(['/staff']);
+      } else if (this.user.roles.includes('Tutor')) {
         this.router.navigate(['/tutor']);
       } else {
         this.router.navigate(['/student']);
