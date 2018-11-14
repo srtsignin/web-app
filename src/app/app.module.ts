@@ -33,6 +33,7 @@ import { RegistrationComponent } from './registration/registration.component';
 import { AuthGuardService } from './auth/auth-guard.service';
 import { RegistrationService } from './registration/registration.service';
 import { RegisterService } from './register/register.service';
+import { DataService } from './data/data.service';
 
 
 const appRoutes: Routes = [
@@ -77,7 +78,8 @@ const appRoutes: Routes = [
     ActiveUsersService,
     CoursesService,
     RegistrationService,
-    RegisterService
+    RegisterService,
+    DataService
   ],
   bootstrap: [AppComponent]
 })
