@@ -36,6 +36,7 @@ export class PendingRequestsComponent implements OnInit {
         }
       }
     });
+    this.resolveEvent.emit();
   }
 
   acceptRequest(user: User) {
