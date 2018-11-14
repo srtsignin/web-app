@@ -31,6 +31,8 @@ import { StaffComponent } from './staff/staff.component';
 import { RegistrationModule } from './registration/registration.module';
 import { RegistrationComponent } from './registration/registration.component';
 import { AuthGuardService } from './auth/auth-guard.service';
+import { RegistrationService } from './registration/registration.service';
+import { RegisterService } from './register/register.service';
 
 
 const appRoutes: Routes = [
@@ -73,7 +75,9 @@ const appRoutes: Routes = [
     RosefireAdapterService,
     RolesAdapterService,
     ActiveUsersService,
-    CoursesService
+    CoursesService,
+    RegistrationService,
+    RegisterService
   ],
   bootstrap: [AppComponent]
 })

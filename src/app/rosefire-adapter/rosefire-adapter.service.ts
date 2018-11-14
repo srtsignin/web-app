@@ -18,4 +18,15 @@ export class RosefireAdapterService {
       });
     });
   }
+
+  public register(): Promise<string> {
+    return new Promise((resolve, reject) => {
+      Rosefire.signIn('ed282a1e-09d5-4511-a5ab-639280ea16fd', (err, user) => {
+        if (err) {
+          reject(err);
+        }
+        resolve(user.token);
+      });
+    });
+  }
 }

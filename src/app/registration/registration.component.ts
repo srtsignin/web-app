@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { RegistrationService } from './registration.service';
 
 @Component({
   selector: 'app-registration',
@@ -7,9 +8,30 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegistrationComponent implements OnInit {
 
-  constructor() { }
+  registered: boolean;
+  successMessage: string;
+
+  constructor(private registrationService: RegistrationService) {
+    this.notRegistered();
+  }
 
   ngOnInit() {
+  }
+
+  public handleSignIn() {
+    this.registrationService.subscribe({
+      next: (loggedIn) => loggedIn ? this.onRegister() : this.notRegistered(),
+    });
+    this.registrationService.signIn();
+  }
+
+  private onRegister() {
+    this.registered = true;
+    this.successMessage = this.registrationService.getFullName() + ' sucessfully registered.';
+  }
+
+  private notRegistered() {
+    this.registered = false;
   }
 
 }

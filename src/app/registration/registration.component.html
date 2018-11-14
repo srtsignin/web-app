@@ -1,3 +1,11 @@
-<p>
-  registration works!
-</p>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      <h1>Registration</h1>
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <button *ngIf="!registered" mat-raised-button color="primary" (click)="handleSignIn()">Register with Rosefire</button>
+    <p *ngIf="registered">{{ successMessage }}</p>
+  </mat-card-content>
+</mat-card>
