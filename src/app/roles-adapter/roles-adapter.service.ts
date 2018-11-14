@@ -1,7 +1,6 @@
 import { Inject, Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { RolesResponse } from '../model/roles-response';
 import { UserBuilder } from '../model/user-builder';
 import { API_URL } from '../api/api.module';
 
@@ -11,7 +10,7 @@ export class RolesAdapterService {
   private API_URL;
 
   constructor(private http: HttpClient, @Inject(API_URL) url: string) {
-    this.API_URL = url;
+    this.API_URL = url + '/role';
   }
 
   public populateRoles(userBuilder: UserBuilder, token: string): Promise<UserBuilder> {
@@ -23,14 +22,21 @@ export class RolesAdapterService {
   }
 
   private getRoles(token: string): Observable<any> {
-    return this.http.get(this.API_URL + '/role/roles', {
+    return this.http.get(this.API_URL + '/roles', {
       headers: new HttpHeaders({'AuthToken': token})
     });
   }
 
   public getAllRoles(token: string): Observable<any> {
-    return this.http.get(this.API_URL + '/role/all_roles', {
+    return this.http.get(this.API_URL + '/all_roles', {
       headers: new HttpHeaders({'AuthToken': token})
+    });
+  }
+
+  public checkRole(role: string, token: string): Observable<any> {
+    return this.http.get(this.API_URL + '/', {
+      headers: new HttpHeaders({'AuthToken': token}),
+      params: new HttpParams().set('role', role)
     });
   }
 }

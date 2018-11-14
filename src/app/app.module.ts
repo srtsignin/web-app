@@ -30,15 +30,16 @@ import { StaffModule } from './staff/staff.module';
 import { StaffComponent } from './staff/staff.component';
 import { RegistrationModule } from './registration/registration.module';
 import { RegistrationComponent } from './registration/registration.component';
+import { AuthGuardService } from './auth/auth-guard.service';
 
 
 const appRoutes: Routes = [
   { path: '',   redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component:  LoginComponent},
-  { path: 'student', component:  StudentComponent},
-  { path: 'tutor', component: TutorComponent},
-  { path: 'staff', component: StaffComponent},
-  { path: 'admin', component: AdminComponent},
+  { path: 'student', component:  StudentComponent, canActivate: [AuthGuardService], data: {expectedRole: 'Student'}},
+  { path: 'tutor', component: TutorComponent, canActivate: [AuthGuardService], data: {expectedRole: 'Tutor'}},
+  { path: 'staff', component: StaffComponent, canActivate: [AuthGuardService], data: {expectedRole: 'Staff'}},
+  { path: 'admin', component: AdminComponent, canActivate: [AuthGuardService], data: {expectedRole: 'Admin'}},
   { path: 'registration', component: RegistrationComponent}
 ];
 

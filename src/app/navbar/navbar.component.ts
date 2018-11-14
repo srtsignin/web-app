@@ -31,7 +31,6 @@ export class NavbarComponent implements OnInit {
   onLogout() {
     this.loggedIn = false;
     this.fullName = '';
-    this.router.navigate(['/login']);
   }
 
   changeRole(role: string) {

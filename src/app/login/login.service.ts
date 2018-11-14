@@ -69,4 +69,8 @@ export class LoginService {
       throw new Error('Attempted to getUser() when not logged in.');
     }
   }
+
+  public loggedIn(): boolean {
+    return this.signedIn.getValue().valueOf();
+  }
 }
