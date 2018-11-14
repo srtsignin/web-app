@@ -30,7 +30,9 @@
           <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
             <mat-option *ngFor="let option of options" [value]="option.queryString">{{option.queryString}}</mat-option>
           </mat-autocomplete>
-          <button mat-icon-button (click)="addCourseRow()" class='add-course'><b>+</b></button>
+          <button mat-icon-button (click)="addCourseRow()" class="add-course">
+            <mat-icon>add_circle</mat-icon>
+          </button>
         </mat-list-item>
       </mat-list>
       <h2>Problem Description</h2>

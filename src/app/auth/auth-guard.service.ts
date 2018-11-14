@@ -16,15 +16,19 @@ export class AuthGuardService implements CanActivate {
     const expectedRole = route.data.expectedRole;
 
     if (!this.login.loggedIn()) {
-      if (this.router.url === '/login' || this.router.url === '/registration') {
+      if (this.router.url !== '/login' && this.router.url !== '/registration') {
         this.router.navigate(['login']);
       }
       return of(false);
     }
 
     return this.roles.checkRole(expectedRole, this.login.getUser().token).pipe(
-      map(response => response.isAuthorized),
-      catchError(error => of(false))
+      map(response => {
+        return response.isAuthorized;
+      }),
+      catchError(error => {
+        return of(false);
+      })
     );
   }
 }

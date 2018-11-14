@@ -9,7 +9,8 @@ import {
   MatInputModule,
   MatGridListModule,
   MatAutocompleteModule,
-  MatCheckboxModule } from '@angular/material';
+  MatCheckboxModule,
+  MatIconModule } from '@angular/material';
 
 @NgModule({
   imports: [
@@ -22,7 +23,8 @@ import {
     MatButtonModule,
     MatGridListModule,
     MatAutocompleteModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatIconModule
   ],
   declarations: [
     StudentComponent

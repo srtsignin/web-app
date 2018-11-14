@@ -24,8 +24,6 @@ mat-card-content {
 
 .last .add-course {
   visibility: visible;
-  background: #33cc33;
-  margin: 0 0 0 2em;
 }
 
 textarea {
