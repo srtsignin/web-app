@@ -1,5 +1,6 @@
 mat-expansion-panel {
   margin: 1em auto;
+  max-width: 990px;
 }
 
 mat-extension-panel-header {
