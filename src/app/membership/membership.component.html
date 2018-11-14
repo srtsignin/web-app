@@ -2,5 +2,13 @@
   <h1>Members</h1>
   <span class="fill-space"></span>
   <!--TODO: Add search box-->
+  <button mat-flat-button (click)="refreshMembers()">Refresh</button>
 </div>
-<app-membership-row accept="Save" decline="Delete" confirm="Confirm Delete" (confirmEvent)="updateMember($event)" (declineEvent)="deleteMember($event)"></app-membership-row>
+<app-membership-row *ngFor="let member of members"
+  accept="Save"
+  decline="Delete"
+  confirm="Confirm Delete"
+  (confirmEvent)="editMember($event)"
+  (declineEvent)="deleteMember($event)"
+  [user]="member"
+  [possibleRoles]="possibleRoles"></app-membership-row>

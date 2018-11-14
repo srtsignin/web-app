@@ -11,11 +11,9 @@ export class MembershipRowComponent implements OnInit {
   @Input() accept: string;
   @Input() decline: string;
   @Input() confirm: string;
-  // @Input() possibleRoles: string[];
-  possibleRoles: string[];
+  @Input() user: User;
+  @Input() possibleRoles: string[];
   checkedRoles: boolean[];
-  // @Input() user: User;
-  user: User;
   confirmDelete: boolean;
 
   @Output() confirmEvent = new EventEmitter();
@@ -24,13 +22,6 @@ export class MembershipRowComponent implements OnInit {
   constructor() {  }
 
   ngOnInit() {
-    this.user = new User();
-    this.user.token = '';
-    this.user.fullname = 'Maya Holeman';
-    this.user.username = 'holemamk';
-    this.user.roles = ['Tutor', 'Staff'];
-
-    this.possibleRoles = ['Tutor', 'Staff', 'Admin'];
     this.checkedRoles = new Array(this.possibleRoles.length);
     for (let i = 0; i < this.checkedRoles.length; ++i) {
       this.checkedRoles[i] = this.user.roles.includes(this.possibleRoles[i]);

@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit} from '@angular/core';
 import { LoginService } from '../login/login.service';
+import { RegisterService } from '../register/register.service';
+import { User } from '../model/user';
+import { RolesAdapterService } from '../roles-adapter/roles-adapter.service';
 
 @Component({
   selector: 'app-admin',
@@ -9,9 +11,33 @@ import { LoginService } from '../login/login.service';
 })
 export class AdminComponent implements OnInit {
 
-  constructor(private loginService: LoginService, private router: Router) { }
+  pendingCount: number;
+  admin: User;
+  roles: string[];
+
+  constructor(private loginService: LoginService,
+    private registerService: RegisterService,
+    private rolesService: RolesAdapterService) {
+    this.admin = this.loginService.getUser();
+    this.updatePendingRequestsCount();
+
+    this.roles = [];
+    this.rolesService.getAllRoles(this.admin.token).subscribe(response => {
+      for (let i = 0; i < response.roles.length; i++) {
+        this.roles[i] = response.roles[i];
+      }
+    });
+  }
 
   ngOnInit() {
+  }
+
+  updatePendingRequestsCount() {
+    this.registerService.getCount(this.admin.token).subscribe(response => {
+      if (response.success) {
+        this.pendingCount = response.data;
+      }
+    });
   }
 
   copyRegistrationLink() {

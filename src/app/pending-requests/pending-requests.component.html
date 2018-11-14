@@ -1,6 +1,13 @@
 <div class="flex-row">
   <h1>Pending Requests</h1>
   <span class="fill-space"></span>
+  <button mat-flat-button (click)="refreshPendingRequests()">Refresh</button>
 </div>
-<app-membership-row accept="Accept" decline="Remove" (confirmEvent)="acceptRequest($event)" (declineEvent)="removeRequest($event)"></app-membership-row>
-<app-membership-row accept="Accept" decline="Remove" (confirmEvent)="acceptRequest($event)" (declineEvent)="removeRequest($event)"></app-membership-row>
+<app-membership-row *ngFor="let request of pendingRequests"
+  accept="Accept"
+  decline="Remove"
+  (confirmEvent)="acceptRequest($event)"
+  (declineEvent)="removeRequest($event)"
+  [user]="request"
+  [possibleRoles]="possibleRoles"
+  ></app-membership-row>

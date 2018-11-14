@@ -5,13 +5,14 @@
   </div>
   <mat-tab-group>
     <mat-tab label="Members">
-      <app-membership></app-membership>
+      <app-membership [possibleRoles]="roles"></app-membership>
     </mat-tab>
     <mat-tab>
       <ng-template matTabLabel>
-          <span matBadge="5" matBadgeOverlap="false">Pending Requests</span>
+          <span [matBadge]="pendingCount" *ngIf="pendingCount>0" matBadgeOverlap="false">Pending Requests</span>
+          <span *ngIf="pendingCount == 0">Pending Requests</span>
       </ng-template>  
-      <app-pending-requests></app-pending-requests>
+      <app-pending-requests (resolveEvent)="updatePendingRequestsCount()" [possibleRoles]="roles"></app-pending-requests>
     </mat-tab>
   </mat-tab-group>
 </mat-card>
